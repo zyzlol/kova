@@ -3582,26 +3582,11 @@
             }
 
             const menuScrollbar = document.getElementById('menu-scrollbar');
-            if (totalItems > maxVisibleItems) {                
-                const totalContentHeightPx = totalItems * itemHeightPx;
-                
-                const scrollbarTrack = document.getElementById('scrollbar-track');
-                scrollbarTrack.style.height = `${containerHeightPx}px`;
-                
-                const thumbHeightPx = Math.max(20, (containerHeightPx / totalContentHeightPx) * containerHeightPx);
-                
-                const maxThumbTop = containerHeightPx - thumbHeightPx;
-                const scrollPercentage = maxScroll > 0 ? scrollOffset / maxScroll : 0;
-                const thumbTopPx = scrollPercentage * maxThumbTop;
-                
-                scrollbarThumb.style.height = `${thumbHeightPx}px`;
-                scrollbarThumb.style.top = `${thumbTopPx}px`;
-            } else {                
-                const scrollbarTrack = document.getElementById('scrollbar-track');
-                scrollbarTrack.style.height = `${containerHeightPx}px`;
-                scrollbarThumb.style.height = `${containerHeightPx}px`;
-                scrollbarThumb.style.top = '0px';
-            }
+            // Sidebar bar is ALWAYS full height, regardless of content/scroll position.
+            const scrollbarTrack = document.getElementById('scrollbar-track');
+            scrollbarTrack.style.height = `${containerHeightPx}px`;
+            scrollbarThumb.style.height = `${containerHeightPx}px`;
+            scrollbarThumb.style.top = '0px';
         });
     };
 
